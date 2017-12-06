@@ -52,7 +52,7 @@
 * 2 different approaches:
   1. Hard coding rules and outcomes, guide program through various options.
   2. Create facility, give program inputs and desired outputs.
-* Backpropagation - Steps to training:
+* Steps to training:
   1. Give inputs
   2. Apply activation function
   3. Compare prediction with actual value
@@ -60,3 +60,25 @@
     - Minimize cost (error)
   4. Adjust weights
 
+## Gradient Descent
+
+* Instead of brute forcing and iterating through many different weights, adjust weight and test for the slope of C, which direction is pointing down towards min C. Zig zag pattern to gradually find the minimum point.
+
+## Stochastic Gradient Descent
+
+* Problem is with multi dimensional cost function, there are local minimums. Need to find the global minimum to have an optimized neural network.
+* 2 approaches:
+  1. Batch Gradient Descent: Adjust weights after running all data.
+  2. Stocastic Gradient Descent: Run data one at a time and adjust weight after each.
+
+## Backpropagation
+
+* Complex mathematics that allows for adjusting all of weights simultanuously
+
+## Steps in Training the ANN with Stochastic Gradient Descent
+1. Randomly initialize the weights to small numbers close to 0 (but not 0).
+2. Input the first observation of your dataset in the input layer, each feature in one input node.
+3. Forward-Propagation: from left to right, the neurons are activated in a way that the impact of each neuron's activatoin is limited by weights. Propagate the activations until getting the predicted result y.
+4. Compare the predicted result to the actual result. Measure the generated error.
+5. Back-Propagation: from right to left, the error is back-propagated. Update the weights according to how much they are responsible for the error. The learning rate decides by how much we update the weights.
+6. Repeat steps 1 to 5 and update the weights after each observation (Reinforcement Learning). Or: Repeat Steps 1 to 5 but update the weights only after a batch of observations (Batch Learning).
