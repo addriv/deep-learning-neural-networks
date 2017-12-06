@@ -1,4 +1,4 @@
-# Classification template
+# Part 1 - Data Pre Processing
 
 # Importing the libraries
 import numpy as np
@@ -33,6 +33,29 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
+
+# Part 2 - Now let's make an ANN!
+
+# Importing Keras library and packages
+import keras
+from keras.models import Sequential # Used to initialize neural network
+from keras.layers import Dense # Used to create the layers
+
+# Initializing the ANN
+classifier = Sequential()
+
+# Adding the input layer and the first hidden layer
+# For number of nodes in hidden layer, tip is to get average input and output layers
+# 11(input) + 1(output) / 2 = 6
+classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu', input_dim = 11))
+
+# Adding the second hidden layer
+classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu'))
+
+
+# Adding output layer
+
+# Part 3 
 
 # Fitting classifier to the Training set
 # Create your classifier here
