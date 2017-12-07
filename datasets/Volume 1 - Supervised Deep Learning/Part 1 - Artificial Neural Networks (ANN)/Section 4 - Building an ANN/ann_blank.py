@@ -61,7 +61,9 @@ classifier.add(Dense(output_dim = 1, init = 'uniform', activation = 'sigmoid'))
 classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # Fitting the ANN to the training set
+print('Starting fit')
 classifier.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
+print('Fit complete')
 
 # Testing saving and loading models
 filename = 'model.json'
@@ -70,6 +72,7 @@ with open(filename, 'w') as json_file:
     json_file.write(model_json)
 classifier.save_weights('model.h5')
 print('Saved model to disk')
+
 
 # load json and create model
 json_file = open('model.json', 'r')
