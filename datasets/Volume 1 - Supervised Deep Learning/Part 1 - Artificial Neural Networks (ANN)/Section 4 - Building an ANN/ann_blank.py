@@ -40,6 +40,7 @@ X_test = sc.transform(X_test)
 import keras
 from keras.models import Sequential # Used to initialize neural network
 from keras.layers import Dense # Used to create the layers
+from keras.models import model_from_json
 
 # Initializing the ANN
 classifier = Sequential()
@@ -62,6 +63,28 @@ classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = [
 # Fitting the ANN to the training set
 classifier.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
 
+# Testing saving and loading models
+filename = 'model.json'
+model_json = classifier.to_json()
+with open(filename, 'w') as json_file:
+    json_file.write(model_json)
+classifier.save_weights('model.h5')
+print('Saved model to disk')
+
+# load json and create model
+json_file = open('model.json', 'r')
+loaded_model_json = json_file.read()
+json_file.close()
+loaded_model = model_from_json(loaded_model_json)
+# load weights into new model
+loaded_model.load_weights('model.h5')
+print('Loaded model from disk')
+
+loaded_model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+new_prediction = loaded_model.predict(sc.transform(np.array([[0.0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])))
+new_prediction = (new_prediction > 0.5)
+
 # Part 3 - Making the predictions and evaluating the model
 
 # Predicting the Test set results
@@ -75,3 +98,4 @@ from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
 # Part 4 - Evaluating, Improving, and Tuning the ANN
+
