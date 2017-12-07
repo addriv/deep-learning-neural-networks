@@ -7,3 +7,4 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.read_json('prices.json')
+dataset2 = pd.read_csv('Churn_Modelling.csv')
