@@ -84,3 +84,19 @@
 5. Back-Propagation: from right to left, the error is back-propagated. Update the weights according to how much they are responsible for the error. The learning rate decides by how much we update the weights.
 6. Repeat steps 1 to 5 and update the weights after each observation (Reinforcement Learning). Or: Repeat Steps 1 to 5 but update the weights only after a batch of observations (Batch Learning).
 7. When the whole training set passed through the ANN, that makes an epoch. Redo more epochs
+
+## Building an ANN
+
+### Example: Churn Modeling
+
+### Libraries
+
+* Theano
+* Tensorflow
+* Keras
+
+### Improving the ANN
+
+* Dropout Regularization
+  * Solution for overtraining, when the ANN learned too much on training set, succeeds on models of some test sets due to correlation similarities.
+  * At each iteration of training, some neurons are randomly disabled to prvent overtraining
